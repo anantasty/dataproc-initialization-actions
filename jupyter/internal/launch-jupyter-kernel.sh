@@ -15,13 +15,13 @@ cat << EOF > "${JUPYTER_LAUNCHER}"
 #!/bin/bash
 
 source /etc/profile.d/conda.sh
-/opt/conda/bin/jupyter notebook --allow-root --no-browser
+/opt/conda/bin/jupyter lab --allow-root --no-browser
 EOF
 chmod 750 "${JUPYTER_LAUNCHER}"
 
 cat << EOF > "${INIT_SCRIPT}"
 [Unit]
-Description=Jupyter Notebook Server
+Description=Jupyter Lab Notebook Server
 
 [Service]
 Type=simple

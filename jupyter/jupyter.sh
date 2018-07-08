@@ -12,7 +12,7 @@ set -exo pipefail
 
 readonly ROLE="$(/usr/share/google/get_metadata_value attributes/dataproc-role)"
 readonly INIT_ACTIONS_REPO="$(/usr/share/google/get_metadata_value attributes/INIT_ACTIONS_REPO \
-  || echo 'https://github.com/GoogleCloudPlatform/dataproc-initialization-actions.git')"
+  || echo 'https://github.com/anantasty/dataproc-initialization-actions.git')"
 readonly INIT_ACTIONS_BRANCH="$(/usr/share/google/get_metadata_value attributes/INIT_ACTIONS_BRANCH \
   || echo 'master')"
 
@@ -43,7 +43,7 @@ fi
 
 if [[ "${ROLE}" == 'Master' ]]; then
   conda install jupyter matplotlib
-
+  conda install -c conda-forge jupyterlab pyspark
   # For storing notebooks on GCS. Pin version to make this script hermetic.
   pip install jgscm==0.1.7
 
