@@ -50,7 +50,7 @@ done
 
 [[ -z "${DATAPROC_CLUSTER_NAME}" ]] && usage
 [[ -z "${ZONE}" ]] && usage
-JUPYTER_PORT=$(get_metadata_property $DATAPROC_CLUSTER_NAME JUPYTER_PORT)
+JUPYTER_PORT=${JUPYTER_PORT}
 [[ ! $JUPYTER_PORT =~ ^[0-9]+$ ]] && throw "metadata must contain a valid 'JUPYTER_PORT' value, but instead has the value \"$JUPYTER_PORT\""
 
 # TODO: Ensure that Jupyter notebook is running on cluster master node
@@ -79,7 +79,7 @@ sleep 5 # Wait for tunnel to be ready before opening browser...
 # 2.Launch Chrome instance, referencing the proxy server.
 # TODO: Parameterize the chrome app path
 # eval $CHROME_APP_PATH \
-/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \
+google-chrome \
   "http://${DATAPROC_CLUSTER_NAME}-m:${JUPYTER_PORT}" \
   --proxy-server='socks5://localhost:10000' \
   --host-resolver-rules='MAP * 0.0.0.0 , EXCLUDE localhost' \

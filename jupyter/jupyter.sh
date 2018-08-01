@@ -41,8 +41,10 @@ if [ -n "${JUPYTER_CONDA_PACKAGES}" ]; then
   conda install ${JUPYTER_CONDA_PACKAGES//:/ }
 fi
 
+#install numpy on all nodes
+conda install numpy
 if [[ "${ROLE}" == 'Master' ]]; then
-  conda install jupyter matplotlib
+  conda install jupyter matplotlib seaborn psycopg2 bokeh
   conda install -c conda-forge jupyterlab pyspark
   # For storing notebooks on GCS. Pin version to make this script hermetic.
   pip install jgscm==0.1.7

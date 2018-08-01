@@ -8,8 +8,8 @@ echo "Installing Jupyter service..."
 
 # Create a separate runner file to make it easier to pull in the right
 # environment variables, etc,. before launching the notebook.
-readonly JUPYTER_LAUNCHER='/usr/local/bin/launch_jupyter.sh'
-readonly INIT_SCRIPT='/usr/lib/systemd/system/jupyter-notebook.service'
+readonly JUPYTER_LAUNCHER='/usr/local/bin/launch_jupyterlab.sh'
+readonly INIT_SCRIPT='/usr/lib/systemd/system/jupyter-lab.service'
 
 cat << EOF > "${JUPYTER_LAUNCHER}"
 #!/bin/bash
@@ -38,8 +38,8 @@ chmod a+rw "${INIT_SCRIPT}"
 echo "Starting Jupyter notebook..."
 
 systemctl daemon-reload
-systemctl enable jupyter-notebook
-systemctl restart jupyter-notebook
-systemctl status jupyter-notebook
+systemctl enable jupyter-lab
+systemctl restart jupyter-lab
+systemctl status jupyter-lab
 
 echo "Jupyter installation succeeded" >&2
